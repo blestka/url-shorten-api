@@ -1,0 +1,19 @@
+name: Test Environment variables
+
+on:
+  workflow_call:
+    inputs:
+      env_var:
+        required: true
+        type: string
+      environment:
+        required: true
+        type: string
+
+jobs:
+  run-with-env:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Output Environment Variable
+        run: echo "${{ toJSON( inputs.env_var) }}"
